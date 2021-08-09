@@ -1,13 +1,16 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Create from './components/Create';
+import Notes from './components/Notes'
 import { createTheme, ThemeProvider} from '@material-ui/core';
+import Layout from './components/Layout';
+
 
 
 const theme = createTheme({
 	palette: {
 		primary: {
-			main: '#63ecbb'
+			main: '#f8bd3b'
 		}
 	},
 	typography: {
@@ -17,21 +20,23 @@ const theme = createTheme({
 		fontWeightMedium: 600,
 		fontWeightBold: 700,
 		
-	}
+	},
 })
 
 function App() {
   return (
 	  <ThemeProvider theme={theme}>
 		<Router>
-			<Switch>
-				<Route exact path="/">
-
-				</Route>
-				<Route path="/create">
-					<Create/>
-				</Route>
-			</Switch>
+			<Layout>
+				<Switch>
+					<Route exact path="/">
+						<Notes/>
+					</Route>
+					<Route path="/create">
+						<Create/>
+					</Route>
+				</Switch>
+			</Layout>
 		</Router>
 	  </ThemeProvider>
   );

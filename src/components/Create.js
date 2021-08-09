@@ -7,6 +7,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import {useHistory} from 'react-router-dom';
+import data from './data'
 
 const useStyles = makeStyles({
 	field: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles({
 export default function Create(){
 	const classes = useStyles();
 	const [title, setTitle] = useState('');
+	const history = useHistory();
 	const [details, setDetails] = useState('');
 	const [titleError, setTitleError] = useState(false);
 	const [detailsError, setDetailsError] = useState(false);
@@ -39,6 +42,8 @@ export default function Create(){
 		}
 
 		if(title && details){
+			data.push({title,details,category,id: Math.round(Math.random() * 10)});
+			history.push("/");
 			console.log(title, details, category);
 		}
 	}
@@ -78,11 +83,11 @@ export default function Create(){
 
 				<FormControl className={classes.field}>
 					<FormLabel>Note Category</FormLabel>
-					<RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
-						<FormControlLabel value="money" control={<Radio/>} label="Money"/>
-						<FormControlLabel value="todos" control={<Radio/>} label="Todos"/>
-						<FormControlLabel value="reminders" control={<Radio/>} label="Reminders"/>
-						<FormControlLabel value="work" control={<Radio/>} label="Work"/>
+					<RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
+						<FormControlLabel value="money" control={<Radio color="primary"/>} label="Money"/>
+						<FormControlLabel value="todos" control={<Radio color="primary"/>} label="Todos"/>
+						<FormControlLabel value="reminders" control={<Radio color="primary"/>} label="Reminders"/>
+						<FormControlLabel value="work" control={<Radio color="primary"/>} label="Work"/>
 					</RadioGroup>
 				</FormControl>
 
